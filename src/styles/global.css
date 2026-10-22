@@ -52,7 +52,11 @@ body {
 }
 
 /* Sections */
-.section { padding: 40px 0; border-top: 1px solid #eee; }
+.section { 
+  padding: 40px 0; 
+  border-top: 1px solid #eee; 
+  text-align: center; 
+}
 .section:first-child { border-top: none; }
 
 h1, h2 { font-family: var(--font-main); color: var(--champagne-gold); }
@@ -61,7 +65,7 @@ h2 { font-size: 3rem; margin-bottom: 20px; }
 
 h3 { font-family: var(--font-main); color: var(--champagne-gold); font-size: 1.8rem; margin-bottom: 25px; }
 
-/* Photo Frame */
+/* Aura de luz animada */
 .photo-container {
   position: relative;
   width: 260px;
@@ -70,29 +74,36 @@ h3 { font-family: var(--font-main); color: var(--champagne-gold); font-size: 1.8
   padding: 8px;
   border: 2px solid var(--champagne-gold);
   border-radius: 50%;
-  box-shadow: 0 0 0 5px var(--pastel-pink);
+  box-shadow: 0 0 10px rgba(197, 160, 89, 0.3), 0 0 20px rgba(197, 160, 89, 0.2);
   overflow: hidden;
+  transition: all 0.4s ease;
 }
 
-/* Aura de luz animada */
+/* Brillo constante automático */
 .photo-container::before {
   content: '';
   position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
   border-radius: 50%;
-  border: 3px solid transparent;
-  border-top: 3px solid var(--champagne-gold);
-  border-bottom: 3px solid var(--champagne-gold);
-  animation: rotateHalo 3s linear infinite;
+  border: 4px solid transparent;
+  border-top: 4px solid var(--champagne-gold);
+  border-bottom: 4px solid var(--champagne-gold);
+  animation: photoGlow 3s linear infinite, autoShine 2s ease-in-out infinite;
   pointer-events: none;
 }
 
-@keyframes rotateHalo {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+@keyframes photoGlow {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.02); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes autoShine {
+  0%, 100% { box-shadow: 0 0 5px rgba(255, 255, 255, 0); }
+  50% { box-shadow: 0 0 25px rgba(255, 255, 255, 0.8); }
 }
 
 .photo-placeholder {
@@ -146,17 +157,42 @@ h3 { font-family: var(--font-main); color: var(--champagne-gold); font-size: 1.8
 }
 
 /* Countdown */
-.countdown-container { display: flex; gap: 15px; justify-content: center; margin: 30px 0; }
+.countdown-container { 
+  display: flex; 
+  gap: 15px; 
+  justify-content: center; 
+  margin: 30px 0; 
+}
 .countdown-box { 
   background: var(--ivory-white); 
   border: 1px solid var(--champagne-gold);
-  padding: 15px 5px; 
-  border-radius: 12px; 
+  padding: 15px 10px; 
+  border-radius: 15px; 
   text-align: center; 
-  min-width: 70px; 
+  min-width: 80px; 
+  box-shadow: 0 4px 6px rgba(197, 160, 89, 0.1);
+  transition: transform 0.3s ease;
 }
-.countdown-box span { display: block; font-size: 0.65rem; color: var(--dusty-pink); text-transform: uppercase; letter-spacing: 1px; }
-.countdown-box div { font-family: var(--font-main); font-size: 1.6rem; color: var(--champagne-gold); }
+.countdown-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(197, 160, 89, 0.2);
+}
+.countdown-box span { 
+  display: block; 
+  font-size: 0.7rem; 
+  color: var(--dusty-pink); 
+  text-transform: uppercase; 
+  letter-spacing: 1.5px; 
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.countdown-box div { 
+  font-family: var(--font-main); 
+  font-size: 1.8rem; 
+  color: var(--champagne-gold); 
+  font-weight: 700;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+}
 
 /* Footer */
 .footer-section { 
@@ -167,4 +203,40 @@ h3 { font-family: var(--font-main); color: var(--champagne-gold); font-size: 1.8
   border-radius: 0 0 20px 20px;
 }
 .footer-text { font-family: var(--font-main); font-size: 1.3rem; color: #5a4a4a; }
+
+
+/* Event Details */
+.details-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+.detail-item {
+
+/* Title Animations */
+.animated-title {
+  animation: pulseText 3s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes pulseText {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.hero-title {
+  text-shadow: 2px 2px 8px rgba(197, 160, 89, 0.3);
+  letter-spacing: 1px;
+}
+
+  display: flex;
+  align-items: center;
+
+/* Gallery */
+.gallery-section { padding-bottom: 20px; text-align: center; }
+
+  gap: 10px;
+}
 

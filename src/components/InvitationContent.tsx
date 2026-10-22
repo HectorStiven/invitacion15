@@ -4,6 +4,7 @@ import LocationSection from './LocationSection';
 import RSVP from './RSVP';
 import Footer from './Footer';
 import AudioPlayer from './AudioPlayer';
+import Gallery from './Gallery';
 import { eventData } from '../data/config';
 import { motion } from 'framer-motion';
 
@@ -26,8 +27,8 @@ const InvitationContent = () => {
       <div className="invitation-card">
         <AudioPlayer />
         <header style={{ textAlign: 'center', marginBottom: '30px' }}>
-          <h1>Mis XV Años</h1>
-          <h2>{eventData.quinceanera}</h2>
+          <h1 className="animated-title">Mis XV Años</h1>
+          <h2 className="animated-title hero-title">{eventData.quinceanera}</h2>
           <p>Una noche mágica, un sueño hecho realidad</p>
         </header>
         
@@ -35,6 +36,7 @@ const InvitationContent = () => {
         
         <Countdown date={eventData.date} />
         <EventDetails />
+        <Gallery />
         <LocationSection />
         <RSVP />
         <Footer />
