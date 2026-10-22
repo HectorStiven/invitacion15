@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
+// @ts-ignore
 import ReactPlayer from 'react-player';
 
 const AudioPlayer = () => {
@@ -7,7 +8,6 @@ const AudioPlayer = () => {
 
   return (
     <>
-      {/* @ts-ignore */}
       <ReactPlayer
         url="https://www.youtube.com/watch?v=xPejhqnHfa8"
         playing={isPlaying}
