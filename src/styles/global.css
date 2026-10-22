@@ -214,6 +214,8 @@ h3 { font-family: var(--font-main); color: var(--champagne-gold); font-size: 1.8
   margin-top: 15px;
 }
 .detail-item {
+  /* Add specific styles here if needed */
+}
 
 /* Title Animations */
 .animated-title {
