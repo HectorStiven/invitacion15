@@ -7,6 +7,7 @@ const AudioPlayer = () => {
 
   return (
     <>
+      {/* @ts-ignore */}
       <ReactPlayer
         url="https://www.youtube.com/watch?v=xPejhqnHfa8"
         playing={isPlaying}
