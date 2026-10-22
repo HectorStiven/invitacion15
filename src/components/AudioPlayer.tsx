@@ -1,35 +1,20 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
+import ReactPlayer from 'react-player';
 
 const AudioPlayer = () => {
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  const toggleMusic = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play().catch(console.error);
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
+  const [isPlaying, setIsPlaying] = useState(true);
 
   return (
     <>
-      {/* 
-        Nota: La reproducción automática de YouTube es técnicamente incompatible 
-        con este componente por políticas de los navegadores.
-        Para que funcione, coloca tu canción en formato .mp3 en la carpeta 'public/' 
-        y descomenta la línea de abajo.
-      */}
-      {/*
-      <audio ref={audioRef} loop>
-        <source src="/musica.mp3" type="audio/mpeg" />
-      </audio>
-      */}
-      <button className="music-toggle" onClick={toggleMusic}>
+      <ReactPlayer
+        url="https://www.youtube.com/watch?v=xPejhqnHfa8"
+        playing={isPlaying}
+        width="0"
+        height="0"
+        loop={true}
+      />
+      <button className="music-toggle" onClick={() => setIsPlaying(!isPlaying)}>
         {isPlaying ? <Volume2 size={20} /> : <VolumeX size={20} />}
       </button>
     </>
