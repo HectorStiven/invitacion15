@@ -231,12 +231,12 @@ h3 { font-family: var(--font-main); color: var(--champagne-gold); font-size: 1.8
   letter-spacing: 1px;
 }
 
-  display: flex;
-  align-items: center;
-
 /* Gallery */
 .gallery-section { padding-bottom: 20px; text-align: center; }
 
+.gallery-grid {
+  display: flex;
+  align-items: center;
   gap: 10px;
 }
 
