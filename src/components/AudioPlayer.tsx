@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
-// @ts-ignore
 import ReactPlayer from 'react-player';
+
+const AnyReactPlayer = ReactPlayer as any;
 
 const AudioPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(true);
 
   return (
     <>
-      <ReactPlayer
+      <AnyReactPlayer
         url="https://www.youtube.com/watch?v=xPejhqnHfa8"
         playing={isPlaying}
         width="0"
