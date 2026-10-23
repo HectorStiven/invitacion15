@@ -1,45 +1,91 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* =========================================
+   1. VARIABLES PRINCIPALES
+   Diseño original azul turquesa y celeste
+========================================= */
 
 :root {
-  --pastel-pink: #FFD1DC;
-  --dusty-pink: #D8A7B1;
-  --champagne-gold: #C5A059;
+  --pastel-pink: #E0F7FA;
+  --dusty-pink: #B2EBF2;
+  --champagne-gold: #0288D1;
   --ivory-white: #FAF9F6;
   --white: #FFFFFF;
   --text-dark: #4A4A4A;
+
   --font-main: 'Dancing Script', cursive;
   --font-text: 'Poppins', sans-serif;
-  --gold-gradient: linear-gradient(135deg, #C5A059 0%, #E8D099 100%);
-  --soft-shadow: 0 4px 15px rgba(0,0,0,0.08);
+
+  --gold-gradient: linear-gradient(135deg, #0288D1 0%, #81D4FA 100%);
+
+  --soft-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  --blue-shadow: 0 5px 20px rgba(2, 136, 209, 0.18);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* =========================================
+   2. CONFIGURACIÓN GENERAL
+========================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-  background: radial-gradient(circle at center, #fffaf6 0%, #f7f3f0 100%);
+  background: radial-gradient(
+    circle at center,
+    #fffaf6 0%,
+    #f7f3f0 100%
+  );
   color: var(--text-dark);
   font-family: var(--font-text);
   line-height: 1.6;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Ornamental Decorations */
+img {
+  max-width: 100%;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+/* =========================================
+   3. DECORACIONES ORNAMENTALES
+========================================= */
+
 .ornament {
   position: absolute;
   width: 100px;
   height: 100px;
-  background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M50 0 C 70 20, 80 30, 100 50 C 80 70, 70 80, 50 100 C 30 80, 20 70, 0 50 C 20 30, 30 20, 50 0 Z" fill="%23C5A059" opacity="0.2"/></svg>');
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0 C70 20 80 30 100 50 C80 70 70 80 50 100 C30 80 20 70 0 50 C20 30 30 20 50 0 Z' fill='%230288D1' opacity='0.2'/%3E%3C/svg%3E");
   background-size: contain;
+  background-repeat: no-repeat;
   pointer-events: none;
   z-index: 0;
 }
 
 .invitation-wrapper {
+  width: 100%;
   max-width: 500px;
   margin: 20px auto;
   padding: 20px;
   position: relative;
 }
+
+/* =========================================
+   4. TARJETA PRINCIPAL
+========================================= */
 
 .invitation-card {
   background: var(--white);
@@ -49,23 +95,104 @@ body {
   box-shadow: var(--soft-shadow);
   position: relative;
   overflow: hidden;
+  isolation: isolate;
+  animation: fadeIn 0.9s ease-out both;
 }
 
-/* Sections */
-.section { 
-  padding: 40px 0; 
-  border-top: 1px solid #eee; 
-  text-align: center; 
+.invitation-card::before,
+.invitation-card::after {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: 1px solid rgba(2, 136, 209, 0.15);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
 }
-.section:first-child { border-top: none; }
 
-h1, h2 { font-family: var(--font-main); color: var(--champagne-gold); }
-h1 { font-size: 2.2rem; margin-bottom: 5px; }
-h2 { font-size: 3rem; margin-bottom: 20px; }
+.invitation-card::before {
+  top: -55px;
+  left: -55px;
+}
 
-h3 { font-family: var(--font-main); color: var(--champagne-gold); font-size: 1.8rem; margin-bottom: 25px; }
+.invitation-card::after {
+  right: -55px;
+  bottom: -55px;
+}
 
-/* Aura de luz animada */
+/* =========================================
+   5. SECCIONES Y TIPOGRAFÍA
+========================================= */
+
+.section {
+  padding: 40px 0;
+  border-top: 1px solid #eaf0f2;
+  text-align: center;
+}
+
+.section:first-child {
+  border-top: none;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-main);
+  color: var(--champagne-gold);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: 2.2rem;
+  line-height: 1.3;
+  margin-bottom: 5px;
+}
+
+h2 {
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  text-shadow: 0 3px 12px rgba(2, 136, 209, 0.10);
+}
+
+h3 {
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+}
+
+p {
+  overflow-wrap: anywhere;
+}
+
+.hero-title {
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 8px rgba(2, 136, 209, 0.22);
+}
+
+.animated-title {
+  display: inline-block;
+  animation: pulseText 3s ease-in-out infinite;
+}
+
+.script-text {
+  font-family: var(--font-main);
+  color: var(--champagne-gold);
+  font-size: 2rem;
+  line-height: 1.4;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: #777;
+  letter-spacing: 1px;
+  line-height: 1.8;
+}
+
+/* =========================================
+   6. FOTOGRAFÍA CIRCULAR CON BRILLO
+========================================= */
+
 .photo-container {
   position: relative;
   width: 260px;
@@ -74,36 +201,47 @@ h3 { font-family: var(--font-main); color: var(--champagne-gold); font-size: 1.8
   padding: 8px;
   border: 2px solid var(--champagne-gold);
   border-radius: 50%;
-  box-shadow: 0 0 10px rgba(197, 160, 89, 0.3), 0 0 20px rgba(197, 160, 89, 0.2);
-  overflow: hidden;
-  transition: all 0.4s ease;
+  box-shadow:
+    0 0 10px rgba(2, 136, 209, 0.3),
+    0 0 20px rgba(2, 136, 209, 0.2);
+  overflow: visible;
+  isolation: isolate;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* Brillo constante automático */
 .photo-container::before {
-  content: '';
+  content: "";
   position: absolute;
-  top: -10px;
-  left: -10px;
-  right: -10px;
-  bottom: -10px;
+  inset: -7px;
   border-radius: 50%;
-  border: 4px solid transparent;
-  border-top: 4px solid var(--champagne-gold);
-  border-bottom: 4px solid var(--champagne-gold);
-  animation: photoGlow 3s linear infinite, autoShine 2s ease-in-out infinite;
+  border: 3px solid transparent;
+  border-top-color: var(--champagne-gold);
+  border-bottom-color: var(--champagne-gold);
+  animation: photoGlow 5s linear infinite;
   pointer-events: none;
+  z-index: 2;
 }
 
-@keyframes photoGlow {
-  0% { transform: rotate(0deg) scale(1); }
-  50% { transform: rotate(180deg) scale(1.02); }
-  100% { transform: rotate(360deg) scale(1); }
+.photo-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2),
+    transparent 55%,
+    rgba(2, 136, 209, 0.08)
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
-@keyframes autoShine {
-  0%, 100% { box-shadow: 0 0 5px rgba(255, 255, 255, 0); }
-  50% { box-shadow: 0 0 25px rgba(255, 255, 255, 0.8); }
+.photo-container:hover {
+  transform: scale(1.025);
+  box-shadow:
+    0 0 15px rgba(2, 136, 209, 0.35),
+    0 0 30px rgba(2, 136, 209, 0.22);
 }
 
 .photo-placeholder {
@@ -117,10 +255,28 @@ h3 { font-family: var(--font-main); color: var(--champagne-gold); font-size: 1.8
   overflow: hidden;
   background-size: cover;
   background-position: center;
+  position: relative;
 }
 
-/* Elegant Buttons */
+.photo-container img,
+.photo-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  transition: transform 0.6s ease;
+}
+
+.photo-container:hover img {
+  transform: scale(1.05);
+}
+
+/* =========================================
+   7. BOTONES ELEGANTES
+========================================= */
+
 .button {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -134,78 +290,295 @@ h3 { font-family: var(--font-main); color: var(--champagne-gold); font-size: 1.8
   font-family: var(--font-text);
   font-weight: 500;
   border: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(197, 160, 89, 0.2);
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(2, 136, 209, 0.2);
+  -webkit-tap-highlight-color: transparent;
 }
 
-.button:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(197, 160, 89, 0.4); }
+.button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+}
+
+.button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(2, 136, 209, 0.35);
+}
+
+.button:hover::before {
+  left: 150%;
+}
+
+.button:active {
+  transform: scale(0.97);
+}
+
+/* =========================================
+   8. BOTÓN FLOTANTE DE MÚSICA
+========================================= */
 
 .music-toggle {
   position: fixed;
   top: 20px;
   right: 20px;
   z-index: 100;
-  background: rgba(255,255,255,0.8);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--champagne-gold);
   border: 1px solid var(--champagne-gold);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--blue-shadow);
+  backdrop-filter: blur(8px);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.music-toggle:hover {
+  transform: scale(1.08);
+  background: var(--pastel-pink);
+}
+
+/* =========================================
+   9. SEPARADOR ORNAMENTAL
+========================================= */
+
+.ornamental-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 25px auto;
+  color: var(--champagne-gold);
+}
+
+.ornamental-divider::before,
+.ornamental-divider::after {
+  content: "";
+  width: 55px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--champagne-gold)
+  );
+}
+
+.ornamental-divider::after {
+  transform: rotate(180deg);
+}
+
+.ornamental-divider span {
+  font-size: 1.3rem;
+}
+
+/* =========================================
+   10. CALENDARIO REACT
+========================================= */
+
+@keyframes pulse-circle {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(2, 136, 209, 0.5);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(2, 136, 209, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(2, 136, 209, 0);
+  }
+}
+
+.react-calendar {
+  width: 100%;
+  max-width: 350px;
+  background: linear-gradient(145deg, #fff, #f0f7fb);
+  border-radius: 30px;
+  box-shadow: 0 15px 35px rgba(2, 136, 209, 0.15);
+  border: 2px solid rgba(2, 136, 209, 0.1);
+  padding: 20px;
+  font-family: var(--font-text);
+  margin: 20px auto;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.react-calendar__navigation {
+  display: none;
+}
+
+.react-calendar__month-view__weekdays {
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--champagne-gold);
+  margin-bottom: 15px;
+  font-size: 0.8rem;
+}
+
+.react-calendar__month-view__weekdays abbr {
+  text-decoration: none;
+}
+
+.react-calendar__tile {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: var(--text-dark);
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.react-calendar__tile abbr {
+  text-decoration: none;
+}
+
+.react-calendar__tile--active {
+  background: transparent !important;
+  color: var(--champagne-gold) !important;
+}
+
+.react-calendar__tile--active abbr {
+  background: var(--champagne-gold);
+  color: white;
   border-radius: 50%;
   width: 40px;
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  font-weight: bold;
+  animation: pulse-circle 2s infinite ease-in-out;
+  box-shadow: 0 5px 15px rgba(2, 136, 209, 0.3);
 }
 
-/* Countdown */
-.countdown-container { 
-  display: flex; 
-  gap: 15px; 
-  justify-content: center; 
-  margin: 30px 0; 
+.react-calendar__tile--now {
+  background: rgba(2, 136, 209, 0.08);
+  color: var(--champagne-gold);
+  font-weight: 700;
 }
-.countdown-box { 
-  background: var(--ivory-white); 
+
+.react-calendar__tile:hover:not(.react-calendar__tile--active) {
+  background-color: rgba(2, 136, 209, 0.1);
+  transform: scale(1.08);
+}
+
+.react-calendar__tile:disabled {
+  background: transparent;
+  color: #c6cdd0;
+  cursor: default;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth {
+  color: #b9c3c8;
+}
+
+/* =========================================
+   11. CUENTA REGRESIVA
+   Compatible con countdown-container
+   y countdown-box del CSS anterior
+========================================= */
+
+.countdown-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.countdown-box {
+  background: var(--ivory-white);
   border: 1px solid var(--champagne-gold);
-  padding: 15px 10px; 
-  border-radius: 15px; 
-  text-align: center; 
-  min-width: 80px; 
-  box-shadow: 0 4px 6px rgba(197, 160, 89, 0.1);
-  transition: transform 0.3s ease;
+  padding: 15px 10px;
+  border-radius: 15px;
+  text-align: center;
+  min-width: 70px;
+  box-shadow: 0 4px 10px rgba(2, 136, 209, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .countdown-box:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(197, 160, 89, 0.2);
+  box-shadow: 0 6px 15px rgba(2, 136, 209, 0.2);
 }
-.countdown-box span { 
-  display: block; 
-  font-size: 0.7rem; 
-  color: var(--dusty-pink); 
-  text-transform: uppercase; 
-  letter-spacing: 1.5px; 
+
+.countdown-box span {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--champagne-gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
   font-weight: 600;
   margin-bottom: 5px;
 }
-.countdown-box div { 
-  font-family: var(--font-main); 
-  font-size: 1.8rem; 
-  color: var(--champagne-gold); 
+
+.countdown-box div {
+  font-family: var(--font-main);
+  font-size: 1.8rem;
+  color: var(--champagne-gold);
   font-weight: 700;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
 }
 
-/* Footer */
-.footer-section { 
-  background: var(--pastel-pink);
-  margin: 20px -30px -50px -30px;
-  padding: 40px 20px;
-  text-align: center;
-  border-radius: 0 0 20px 20px;
+/* Variante alternativa de cuenta regresiva */
+.countdown {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 25px 0;
 }
-.footer-text { font-family: var(--font-main); font-size: 1.3rem; color: #5a4a4a; }
 
+.countdown-item {
+  min-width: 68px;
+  padding: 15px 10px;
+  border-radius: 14px;
+  background: var(--gold-gradient);
+  color: white;
+  box-shadow: var(--soft-shadow);
+}
 
-/* Event Details */
+.countdown-item strong {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.countdown-item span {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* =========================================
+   12. DETALLES DEL EVENTO
+========================================= */
+
 .details-grid {
   display: flex;
   flex-direction: column;
@@ -213,32 +586,312 @@ h3 { font-family: var(--font-main); color: var(--champagne-gold); font-size: 1.8
   gap: 10px;
   margin-top: 15px;
 }
+
 .detail-item {
-  /* Add specific styles here if needed */
+  max-width: 100%;
 }
 
-/* Title Animations */
-.animated-title {
-  animation: pulseText 3s ease-in-out infinite;
-  display: inline-block;
+.event-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+  margin: 25px 0;
 }
 
-@keyframes pulseText {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+.event-detail {
+  padding: 20px 12px;
+  background: linear-gradient(145deg, #fff, #f0faff);
+  border: 1px solid rgba(2, 136, 209, 0.15);
+  border-radius: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.hero-title {
-  text-shadow: 2px 2px 8px rgba(197, 160, 89, 0.3);
-  letter-spacing: 1px;
+.event-detail:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--soft-shadow);
 }
 
-/* Gallery */
-.gallery-section { padding-bottom: 20px; text-align: center; }
+.event-detail .icon {
+  display: block;
+  font-size: 1.7rem;
+  margin-bottom: 8px;
+  color: var(--champagne-gold);
+}
+
+.event-detail h4 {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  color: var(--champagne-gold);
+}
+
+.event-detail p {
+  font-size: 0.85rem;
+}
+
+/* =========================================
+   13. GALERÍA
+========================================= */
+
+.gallery-section {
+  padding-bottom: 20px;
+  text-align: center;
+}
 
 .gallery-grid {
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
+.photo-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 25px 0;
+}
+
+.photo-gallery img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: var(--soft-shadow);
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.photo-gallery img:hover {
+  transform: translateY(-4px);
+  filter: brightness(1.04);
+}
+
+.photo-gallery img:first-child {
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 9;
+}
+
+/* =========================================
+   14. PIE DE INVITACIÓN
+========================================= */
+
+.footer-section {
+  background: var(--pastel-pink);
+  margin: 20px -30px -50px;
+  padding: 40px 20px;
+  text-align: center;
+  border-radius: 0 0 20px 20px;
+}
+
+.footer-text {
+  font-family: var(--font-main);
+  font-size: 1.3rem;
+  color: #36545d;
+}
+
+.invitation-footer {
+  text-align: center;
+  padding: 30px 10px 10px;
+  color: #888;
+  font-size: 0.8rem;
+}
+
+.invitation-footer .heart {
+  display: inline-block;
+  color: var(--champagne-gold);
+  animation: floatDecoration 2.5s ease-in-out infinite;
+}
+
+/* =========================================
+   15. ANIMACIONES
+========================================= */
+
+@keyframes photoGlow {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(1.02);
+  }
+
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes autoShine {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0);
+  }
+
+  50% {
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseText {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes floatDecoration {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* =========================================
+   16. ACCESIBILIDAD
+========================================= */
+
+.button:focus-visible,
+.music-toggle:focus-visible,
+.react-calendar__tile:focus-visible {
+  outline: 3px solid var(--champagne-gold);
+  outline-offset: 3px;
+}
+
+/* =========================================
+   17. RESPONSIVE PARA CELULARES
+========================================= */
+
+@media (max-width: 480px) {
+  .invitation-wrapper {
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+  }
+
+  .invitation-card {
+    padding: 38px 20px;
+    border-radius: 18px;
+  }
+
+  h1 {
+    font-size: 1.9rem;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+  }
+
+  h3 {
+    font-size: 1.6rem;
+  }
+
+  .section {
+    padding: 30px 0;
+  }
+
+  .photo-container {
+    width: min(240px, 75vw);
+    height: min(240px, 75vw);
+    margin: 30px auto;
+  }
+
+  .button {
+    max-width: 100%;
+    padding: 13px 22px;
+    font-size: 0.9rem;
+  }
+
+  .music-toggle {
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .countdown-container {
+    gap: 8px;
+  }
+
+  .countdown-box {
+    min-width: 58px;
+    padding: 12px 8px;
+  }
+
+  .countdown-box div {
+    font-size: 1.5rem;
+  }
+
+  .countdown-box span {
+    font-size: 0.62rem;
+    letter-spacing: 0.5px;
+  }
+
+  .countdown-item {
+    min-width: 58px;
+    padding: 12px 8px;
+  }
+
+  .react-calendar {
+    padding: 12px;
+    border-radius: 22px;
+  }
+
+  .react-calendar__tile {
+    height: 42px;
+    font-size: 0.9rem;
+  }
+
+  .react-calendar__tile--active abbr {
+    width: 34px;
+    height: 34px;
+  }
+
+  .footer-section {
+    margin: 20px -20px -38px;
+    padding: 30px 15px;
+  }
+
+  .event-details {
+    gap: 10px;
+  }
+
+  .event-detail {
+    padding: 15px 8px;
+  }
+
+  .photo-gallery {
+    gap: 8px;
+  }
+}
+
+/* =========================================
+   18. REDUCIR ANIMACIONES SI SE SOLICITA
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
